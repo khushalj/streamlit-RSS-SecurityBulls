@@ -45,22 +45,22 @@ def main():
         return
     
     # Input field for the RSS feed URL
-    feed_url = st.text_input("Enter RSS Feed URL", "https://www.meity.gov.in/deity.xml")
+    feed_url = st.selectbox("Select RSS Feed URL", [
+        "http://feeds.feedburner.com/TheHackersNews",
+        "https://www.meity.gov.in/deity.xml"
+    ])
     
     if st.button("Fetch"):
-        if feed_url:
-            feed_entries = parse_rss_feed(feed_url)
-            if feed_entries:
-                st.header(feed_entries[0]["title"])
-                for entry in feed_entries:
-                    st.subheader(entry["title"])
-                    st.write(entry["summary"])
-                    st.write(f"Published on: {entry['published']}")
-                    st.write(f"Link: {entry['link']}")
-            else:
-                st.warning("Error fetching or parsing the RSS feed.")
+        feed_entries = parse_rss_feed(feed_url)
+        if feed_entries:
+            st.header(feed_entries[0]["title"])
+            for entry in feed_entries:
+                st.subheader(entry["title"])
+                st.write(entry["summary"])
+                st.write(f"Published on: {entry['published']}")
+                st.write(f"Link: {entry['link']}")
         else:
-            st.warning("Please enter a valid RSS Feed URL and click 'Fetch'.")
+            st.warning("Error fetching or parsing the RSS feed.")
 
 if __name__ == "__main__":
     main()
