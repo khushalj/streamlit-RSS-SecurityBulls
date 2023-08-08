@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 import xml.etree.ElementTree as ET
-import importlib
+import pkg_resources
 
 def check_requirements(requirements_file):
     with open(requirements_file, 'r') as file:
@@ -10,8 +10,8 @@ def check_requirements(requirements_file):
     not_installed = []
     for requirement in requirements:
         try:
-            importlib.import_module(requirement)
-        except ImportError:
+            pkg_resources.require(requirement)
+        except pkg_resources.DistributionNotFound:
             not_installed.append(requirement)
     
     return not_installed
