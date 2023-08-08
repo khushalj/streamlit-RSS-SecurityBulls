@@ -45,7 +45,7 @@ def main():
         return
     
     # Input field for the RSS feed URL
-    feed_url = st.text_input("Enter RSS Feed URL", "http://feeds.feedburner.com/TheHackersNews")
+    feed_url = st.text_input("Enter RSS Feed URL", "https://www.meity.gov.in/deity.xml")
     
     if st.button("Fetch"):
         if feed_url:
