@@ -36,7 +36,7 @@ def parse_rss_feed(feed_url):
         return None
 
 def main():
-    st.title("RSS Feed Reader")
+    st.title("Latest in Cyber World")
     
     # Check required packages
     missing_packages = check_requirements('requirements.txt')
